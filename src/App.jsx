@@ -6,13 +6,14 @@ import Register from "./modules/AuthModule/Components/Register/Register"
 import ForgotPassword from "./modules/AuthModule/Components/ForgotPassword/ForgotPassword"
 import ResetPassword from "./modules/AuthModule/Components/ResetPassword/ResetPassword"
 import MasterLayout from "./modules/Shared/Components/MasterLayout/MasterLayout"
-import RecipesList from "./modules/AdminModule/Components/Recipes/RecipesList/RecipesList"
-import ViewRecipeDetails from "./modules/Shared/Components/ViewRecipeDetails/ViewRecipeDetails"
-import UpdateRecipe from "./modules/AdminModule/Components/Recipes/UpdateRecipe/UpdateRecipe"
-import AddRecipe from "./modules/AdminModule/Components/Recipes/AddRecipe/AddRecipe"
-import CategoriesList from "./modules/AdminModule/Components/Categories/CategoriesList/CategoriesList"
-import FavoriteRecipes from "./modules/UserModule/Components/FavoriteRecipes/FavoriteRecipes"
-import UserRecipes from "./modules/UserModule/Components/UserRecipes/UserRecipes"
+import Dashboard from "./modules/Dashboard/Components/Dashboard/Dashboard"
+import RecipesList from "./modules/Recipes/Components/RecipesList/RecipesList"
+import RecipeData from "./modules/Recipes/Components/RecipeData/RecipeData"
+import CategoriesList from "./modules/Categories/Components/CategoriesList/CategoriesList"
+import CategoryData from "./modules/Categories/Components/CategoryData/CategoryData"
+import UsersList from "./modules/Users/Components/UsersList/UsersList"
+import FavoritesList from "./modules/Favorites/FavoritesList/FavoritesList"
+import Verify from "./modules/AuthModule/Components/Verify/Verify"
 
 
 
@@ -27,19 +28,20 @@ function App() {
       {path: 'register', element: <Register/>},
       {path:'forgot-password', element: <ForgotPassword/>},
       {path:'reset-password', element: <ResetPassword/>},
+       {path:'verify-account', element: <Verify/>},
     ]},
     {
       path:"/dashboard",
       element: <MasterLayout/>,
       errorElement: <NotFound/>,
       children:[
-        {index: true, element:<RecipesList/>},
+        {index: true, element:<Dashboard/>},
         {path: 'recipes', element:<RecipesList/>},
-        {path: 'recipes/:id', element:<ViewRecipeDetails/>},
-        {path: 'recipes/:id/update', element:<UpdateRecipe/>},
-        {path: 'add', element:<AddRecipe/>},
+        {path: 'recipes-data', element:<RecipeData/>},
         {path: 'categories', element:<CategoriesList/>},
-        {path: 'favorite', element:<FavoriteRecipes/>},
+        {path: 'category-data', element:<CategoryData/>},
+        {path: 'users', element:<UsersList/>},
+        {path: 'favorites', element:<FavoritesList/>},
 
       ]
     }
