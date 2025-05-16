@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function CategoriesList() {
+export default function RecipesList() {
   return (
     <div>
-    CategoriesList
+      RecipesList
     </div>
   )
 }

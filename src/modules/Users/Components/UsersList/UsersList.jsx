@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function FavoriteRecipes() {
+export default function UsersList() {
   return (
     <div>
-    FavoriteRecipes
+      UsersList
     </div>
   )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function AddRecipe() {
+export default function Header() {
   return (
     <div>
-    AddRecipe
+      Header
     </div>
   )
 }
