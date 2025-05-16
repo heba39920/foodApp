@@ -1,0 +1,26 @@
+.form-control{
+     padding-block: 10px;
+    background-color: #F7F7F7;
+}
+.form-control:focus{
+    background-color: #F7F7F7;
+    border-color: #4AA35A;
+    box-shadow: 0 0 0 0.2rem rgba(74, 163, 90, 0.25);
+}
+.forgetPassLink{
+    color: #4AA35A;
+}
+.submit-btn{
+    background-color: #4AA35A;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+.submit-btn:hover{
+    background-color: #4AA35A;
+    color: white;
+}
+
+

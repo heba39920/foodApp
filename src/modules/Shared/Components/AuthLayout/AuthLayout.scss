@@ -1,0 +1,32 @@
+
+.auth-background{
+    background-image: url("../../../../assets/images/54610880da87cd52923ebecef90e1f43751cfebc.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   position: relative;
+   z-index: 0;
+   
+
+}
+.auth-background::after{
+    content: "";
+   background: linear-gradient(51.22deg, rgba(47, 140, 96, 0.63) -22.39%, rgba(0, 0, 0, 0.6237) 61.76%);
+   inset: 0;
+   position: absolute;
+   z-index: -1;
+   overflow: hidden;
+;
+}
+.form-container{
+    background-color: #fff;
+    padding: 30px 80px;
+    border-radius: 20px;
+    margin-inline: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    z-index: 10000;
+}
