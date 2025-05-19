@@ -14,6 +14,7 @@ import CategoryData from "./modules/Categories/Components/CategoryData/CategoryD
 import UsersList from "./modules/Users/Components/UsersList/UsersList"
 import FavoritesList from "./modules/Favorites/FavoritesList/FavoritesList"
 import Verify from "./modules/AuthModule/Components/Verify/Verify"
+import Protected from "./Protected/Protected"
 
 
 
@@ -32,7 +33,10 @@ function App() {
     ]},
     {
       path:"/dashboard",
-      element: <MasterLayout/>,
+      element:
+     <Protected>
+       <MasterLayout/>
+       </Protected>,
       errorElement: <NotFound/>,
       children:[
         {index: true, element:<Dashboard/>},

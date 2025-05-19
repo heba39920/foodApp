@@ -9,7 +9,9 @@ import {
 import { AUTH_URLS } from "../../../../Constants/END-POINTS";
 import axios from "axios";
 import { useState } from "react";
+import { useAuthContext } from "../../../../Context/AuthContext";
 export default function Login() {
+  const {saveData} = useAuthContext();
   const [visible,setVisible] = useState(false);
   const handleVisible = () => {
     setVisible(!visible);
@@ -28,6 +30,8 @@ const onSubmit = async (data) => {
       pauseOnHover: false,
       draggable: true,
     });
+    localStorage.setItem("token",response.data.token);
+    saveData();
     navigate("/dashboard");
   } catch (error) {
     console.log(error);
