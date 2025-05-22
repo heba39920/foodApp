@@ -2,6 +2,9 @@ export const emailValidation = {
   required: "Email is required",
   invalid: "Email is invalid",
 };
+export const name = {
+  required: "name is required",
+};
 export const passValidation = {
   required: "Password is required",
   invalid: "Password is invalid",

@@ -16,3 +16,55 @@ li{
 body{
     margin: 0;
 }
+/* sidebar */
+.sidebar .css-dip3t8{
+    background-color: #1F263E;
+    color: #fff;
+   border-top-right-radius: 58px;
+
+}
+.sidebar .css-1wvake5{
+    border: none;
+}
+
+
+.sidebar .ps-menu-button{
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    -o-transition: all .4s ease;
+}
+.sidebar .css-1t8x7v1 >.ps-menu-button:hover{
+    background: #00924D1A;
+    border-left: #009247 4px solid;
+
+}
+/* navBar */
+.navbar-brand{
+    width: 12%;
+   
+}
+/* header */
+.header{
+    background-image: url('./assets/images/headerImg.svg');
+    background-color: #009247;
+    
+}
+/* dashBoard */
+.mainContent{
+    background-color: #F0FFEF;
+    color: #000;    
+    padding: 30px;
+    margin-top: 20px;
+}
+.title-span{
+    color: #009247;
+}
+/* categories */
+.table .dropdown-toggle::after{
+    display: none;
+}
+.btns-icon{
+    color: #009247;
+}

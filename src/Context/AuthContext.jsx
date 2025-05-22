@@ -8,7 +8,6 @@ export default function AuthContextProvider({children}) {
         const encodedUser = localStorage.getItem("token");
         try {
             const decodedUser = jwtDecode(encodedUser);
-            console.log(decodedUser);
             setUserData(decodedUser);
             
         } catch (error) {

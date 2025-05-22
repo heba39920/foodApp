@@ -6,8 +6,7 @@ import {
   emailValidation,
   passValidation,
 } from "../../../../Constants/VALIDATION";
-import { AUTH_URLS } from "../../../../Constants/END-POINTS";
-import axios from "axios";
+import { AUTH_URLS, axiosInstance } from "../../../../Constants/END-POINTS";
 import { useState } from "react";
 import { useAuthContext } from "../../../../Context/AuthContext";
 export default function Login() {
@@ -20,8 +19,7 @@ export default function Login() {
 const {register,handleSubmit,formState:{errors}} = useForm();
 const onSubmit = async (data) => {
   try {
-    const response = await axios.post(AUTH_URLS.login,data);
-    console.log(response);
+    const response = await axiosInstance.post(AUTH_URLS.login,data);
     toast.success("Login Successfully",{
       position: "top-center",
       autoClose: 2000,
