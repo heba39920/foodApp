@@ -1,7 +1,8 @@
 import { useMutation} from "@tanstack/react-query";
 import { axiosInstance } from "../Constants/CONTENT-END-POINTS";
+
+
 export default function useMutateData() {
-  
   const AddData = async (url, data) => {
     const response = await axiosInstance.post(url, data);
     return response?.data;
@@ -14,14 +15,14 @@ export default function useMutateData() {
   };
 
   const AddMutation = useMutation({mutationFn:AddData});
-  const updateMutation = useMutation({mutationFn:UpdateData});
+  const UpdateMutation = useMutation({mutationFn:UpdateData});
   const mutate = (params) => {    
     if (params.mode === "add") {
       return AddMutation.mutateAsync(params?.url, params?.data);
     } else if (params.mode === "update") {
-      return updateMutation.mutateAsync({ url: params?.url, data: params?.data });
+      return UpdateMutation.mutateAsync({ url: params?.url, data: params?.data });
     }
   };
 
-  return { mutate, AddStatus: AddMutation.status, updateStatus: updateMutation.status };
+  return { mutate, AddStatus: AddMutation.status, UpdateStatus: UpdateMutation.status };
 }

@@ -68,3 +68,14 @@ body{
 .btns-icon{
     color: #009247;
 }
+/* not found */
+.notFound{
+    background-image: url('./assets/images/NotFoundImg.svg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100vh;
+   
+}
+.notFound-text{
+    color: #009247;
+}
