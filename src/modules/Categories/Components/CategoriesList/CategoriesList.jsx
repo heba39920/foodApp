@@ -13,6 +13,7 @@ import ViewDetailsModal from '../../../Shared/Components/ViewDetailsModal/ViewDe
 import ViewDetailsImg from '../../../../assets/images/Group 48102098.png'
 import NoData from '../../../Shared/Components/NoData/NoData';
 import {Oval } from 'react-loader-spinner';
+import { toast } from 'react-toastify';
 
 export default function CategoriesList() {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +21,7 @@ export default function CategoriesList() {
   const [categoryDetails, setCategoryDetails] = useState({});
   const [showDetails, setShowDetails] = useState(false);
   const handleShowDetails = () => setShowDetails(true);
-
+// get category by id
   const getCategoryById = async (categId) => {
     try {
       const response = await axiosInstance.get(CATEGORY_URLS.getCategoryById(categId));
@@ -42,17 +43,36 @@ export default function CategoriesList() {
 
   const addOrUpdateCategory = async (data) => {
     try {
-      setIsLoading(true);
+     
       if (mode === 'add') {
         await axiosInstance.post(CATEGORY_URLS.addCategory, data);
       } else if (mode === 'update') {
         await axiosInstance.put(CATEGORY_URLS.updateCategory(categId), data);
+      }
+       setIsLoading(true);
+      if (mode === 'add') {
+        toast.success("Category added successfully",{
+          position:'top-center'
+        });
+      } else {
+        toast.success("Category updated successfully",{
+          position:'top-center'
+        });
       }
       reset();
       getAllCategories();
       handleCloseMutateModule();
     } catch (error) {
       console.log(error);
+      if (mode === 'add') {
+        toast.error("Failed to add category",{
+          position:'top-center'
+        });
+      } else {
+        toast.error("Failed to update category",{
+          position:'top-center'
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -97,9 +117,15 @@ export default function CategoriesList() {
       setIsLoading(true);
       await axiosInstance.delete(CATEGORY_URLS.deleteCategory(categId));
       getAllCategories();
+      toast.success("Category deleted successfully",{
+          position:'top-center'
+        });
       handleClose();
     } catch (error) {
       console.log(error);
+      toast.error("Failed to delete category",{
+          position:'top-center'
+        });
     } finally {
       setIsLoading(false);
     }
