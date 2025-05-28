@@ -18,7 +18,7 @@ export default function Dashboard() {
       <p>you can now fill the meals easily using the table and form , click here and sill it with the table !</p>
      </div>
       <div>
-       <Link to={'recipes'}  className="btn submit-btn">Fill Recipes <i className="fa-solid fa-arrow-right mx-2"></i></Link>
+       <Link to={'/dashboard/recipes-data'}  className="btn submit-btn">Fill Recipes <i className="fa-solid fa-arrow-right mx-2"></i></Link>
         </div>
      </div>
       </div>

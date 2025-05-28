@@ -5,8 +5,7 @@ import {
   emailValidation,
 
 } from "../../../../Constants/VALIDATION";
-import { AUTH_URLS } from "../../../../Constants/END-POINTS";
-import axios from "axios";
+import { AUTH_URLS, axiosInstance } from "../../../../Constants/END-POINTS";
 import { useNavigate } from "react-router-dom";
 
 export default function ForgotPassword() {
@@ -14,7 +13,7 @@ export default function ForgotPassword() {
 const {register,handleSubmit,formState:{errors}} = useForm();
 const onSubmit = async (data) => {
   try {
-    const response = await axios.post(AUTH_URLS.forgotPassword,data);
+    const response = await axiosInstance.post(AUTH_URLS.forgotPassword,data);
     console.log(response);
     toast.success("OTP is sent",{
       position: "top-center",

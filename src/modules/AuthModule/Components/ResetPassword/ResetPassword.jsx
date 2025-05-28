@@ -7,8 +7,7 @@ import {
   ConfirmPassValidation,
     otpValidation
 } from "../../../../Constants/VALIDATION";
-import { AUTH_URLS } from "../../../../Constants/END-POINTS";
-import axios from "axios";
+import { AUTH_URLS, axiosInstance } from "../../../../Constants/END-POINTS";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +21,7 @@ export default function ResetPassword() {
    }
 const onSubmit = async (data) => {
   try {
-    const response = await axios.post(AUTH_URLS.resetPassword,data);
+    const response = await axiosInstance.post(AUTH_URLS.resetPassword,data);
     console.log(response);
     toast.success("Password is updated successfully",{
       position: "top-center",

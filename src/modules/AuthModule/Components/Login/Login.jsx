@@ -69,17 +69,7 @@ const onSubmit = async (data) => {
   <div className="input-group mb-3">
     <span className="input-group-text" id="basic-addon1"><i className="fa-solid fa-lock"></i></span>
     <input type={visible? "text": "password"} placeholder="Password" className="form-control" id="exampleInputPassword1"  
-    {...register("password",{
-      required: {
-        value: true,
-        message: passValidation.required
-      },
-      pattern: {
-        value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@]{8,}$/,
-        
-        message: passValidation.invalid
-      }
-     })} />
+    {...register("password",{ required:  passValidation.required  })} />
       <div className="input-group-text" onClick={handleVisible}>
         {visible? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
         </div>

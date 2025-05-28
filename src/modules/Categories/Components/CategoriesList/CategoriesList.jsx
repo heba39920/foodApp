@@ -12,7 +12,7 @@ import { name } from '../../../../Constants/VALIDATION';
 import ViewDetailsModal from '../../../Shared/Components/ViewDetailsModal/ViewDetailsModal';
 import ViewDetailsImg from '../../../../assets/images/Group 48102098.png'
 import NoData from '../../../Shared/Components/NoData/NoData';
-import {Oval } from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 
 export default function CategoriesList() {
@@ -21,16 +21,16 @@ export default function CategoriesList() {
   const [categoryDetails, setCategoryDetails] = useState({});
   const [showDetails, setShowDetails] = useState(false);
   const handleShowDetails = () => setShowDetails(true);
-// get category by id
+  // get category by id
   const getCategoryById = async (categId) => {
     try {
       const response = await axiosInstance.get(CATEGORY_URLS.getCategoryById(categId));
       setIsLoading(true);
       setCategoryDetails(response.data);
-      
+
     } catch (error) {
       console.log(error);
-    }finally{
+    } finally {
       setIsLoading(false);
     }
   };
@@ -43,20 +43,20 @@ export default function CategoriesList() {
 
   const addOrUpdateCategory = async (data) => {
     try {
-     
+
       if (mode === 'add') {
         await axiosInstance.post(CATEGORY_URLS.addCategory, data);
       } else if (mode === 'update') {
         await axiosInstance.put(CATEGORY_URLS.updateCategory(categId), data);
       }
-       setIsLoading(true);
+      setIsLoading(true);
       if (mode === 'add') {
-        toast.success("Category added successfully",{
-          position:'top-center'
+        toast.success("Category added successfully", {
+          position: 'top-center'
         });
       } else {
-        toast.success("Category updated successfully",{
-          position:'top-center'
+        toast.success("Category updated successfully", {
+          position: 'top-center'
         });
       }
       reset();
@@ -65,12 +65,12 @@ export default function CategoriesList() {
     } catch (error) {
       console.log(error);
       if (mode === 'add') {
-        toast.error("Failed to add category",{
-          position:'top-center'
+        toast.error("Failed to add category", {
+          position: 'top-center'
         });
       } else {
-        toast.error("Failed to update category",{
-          position:'top-center'
+        toast.error("Failed to update category", {
+          position: 'top-center'
         });
       }
     } finally {
@@ -100,10 +100,10 @@ export default function CategoriesList() {
   const handleShowMutateModule = () => setShowMutateModule(true);
 
   // get all categories
-  const getAllCategories = async () => {
+ const getAllCategories = async (pageSize,pageNumber) => {
     try {
       setIsLoading(true);
-      const response = await axiosInstance.get(CATEGORY_URLS.getAllCategories);
+      const response = await axiosInstance.get(CATEGORY_URLS.getAllCategories,{params:{pageSize, pageNumber}});
       setCategories(response.data.data);
     } catch (error) {
       console.log(error.response?.data?.message || error.message);
@@ -117,15 +117,15 @@ export default function CategoriesList() {
       setIsLoading(true);
       await axiosInstance.delete(CATEGORY_URLS.deleteCategory(categId));
       getAllCategories();
-      toast.success("Category deleted successfully",{
-          position:'top-center'
-        });
+      toast.success("Category deleted successfully", {
+        position: 'top-center'
+      });
       handleClose();
     } catch (error) {
       console.log(error);
-      toast.error("Failed to delete category",{
-          position:'top-center'
-        });
+      toast.error("Failed to delete category", {
+        position: 'top-center'
+      });
     } finally {
       setIsLoading(false);
     }
@@ -145,7 +145,7 @@ export default function CategoriesList() {
   };
 
   useEffect(() => {
-    getAllCategories();
+    getAllCategories(10,1);
   }, []);
 
   // When mode changes to 'update', populate form if editing
@@ -159,17 +159,17 @@ export default function CategoriesList() {
     }
   }, [mode, categId, categories, setValue]);
 
-  if (isLoading) return ( <div className='d-flex align-items-center justify-content-center'>
-      <Oval
-  visible={true}
-  height="100vh"
-  width="100"
-  color="#009247" 
-  ariaLabel="oval-loading"
-  wrapperStyle={{}}
-  wrapperClass=""
-  /> </div>
-    );
+  if (isLoading) return (<div className='d-flex align-items-center justify-content-center'>
+    <Oval
+      visible={true}
+      height="100vh"
+      width="100"
+      color="#009247"
+      ariaLabel="oval-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+    /> </div>
+  );
 
   return (
     <div className='container-fluid'>

@@ -15,6 +15,7 @@ import UsersList from "./modules/Users/Components/UsersList/UsersList"
 import FavoritesList from "./modules/Favorites/FavoritesList/FavoritesList"
 import Verify from "./modules/AuthModule/Components/Verify/Verify"
 import Protected from "./Protected/Protected"
+import ChangePassword from "./modules/AuthModule/Components/ChangePassword/ChangePassword"
 
 
 
@@ -30,6 +31,7 @@ function App() {
       {path:'forgot-password', element: <ForgotPassword/>},
       {path:'reset-password', element: <ResetPassword/>},
        {path:'verify-account', element: <Verify/>},
+       {path:'change-password', element:<ChangePassword/>}
     ]},
     {
       path:"/dashboard",

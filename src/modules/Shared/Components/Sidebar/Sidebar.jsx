@@ -23,7 +23,7 @@ const handleLogout=()=>{
     <MenuItem icon={<i className="fa fa-users"></i>} component={<Link to="users" />}>Users</MenuItem>
     <MenuItem icon={<i className="fa fa-folder-tree"></i>} component={<Link to="Recipes" />}>Recipes</MenuItem>
     <MenuItem icon={<i className="fa-solid fa-calendar-days"></i>} component={<Link to="categories" />}>Categories</MenuItem>
-    <MenuItem icon={<i className="fa fa-lock"></i>} component={<Link to="change-password" />}>Change Password</MenuItem>
+    <MenuItem icon={<i className="fa fa-lock"></i>} component={<Link to="/change-password" />}>Change Password</MenuItem>
     <MenuItem icon={<i className="fa fa-right-from-bracket"></i>}  onClick={handleLogout}>Logout</MenuItem>
 
 

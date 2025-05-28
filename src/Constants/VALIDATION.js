@@ -5,6 +5,33 @@ export const emailValidation = {
 export const name = {
   required: "name is required",
 };
+export const userName = {
+  required: "userName is required",
+};
+export const phone = {
+  required: "phone is required",
+};
+export const country = {
+  required: "country is required",
+};
+export const Recipe_image = {
+  required: "Recipe's image is required",
+};
+export const price = {
+  required: "price is required",
+};
+export const tag = {
+  required: "tag is required",
+};
+export const image = {
+  required: "Image is required",
+};
+export const category = {
+  required: "Category is required",
+}
+export const description = {
+  required: "description is required",
+};
 export const passValidation = {
   required: "Password is required",
   invalid: "Password is invalid",
