@@ -33,43 +33,37 @@ const onSubmit = async (data) => {
     navigate("/dashboard");
   } catch (error) {
     console.log(error);
-    toast.error("Login Failed",{
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-    });
+    toast.error(
+      error.response?.data?.message || "Login failed. Please try again.",
+      {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+      }
+    );
     
   }
   
 }
   return <form onSubmit={handleSubmit(onSubmit)}>
-  <div className="mb-3">
+  <div className="mb-2">
   <h3 className="text-capitalize">log in</h3>
   <p>Welcome Back! Please enter your details</p>
-   <div className="input-group mb-3">
+   <div className="input-group my-2">
       <span className="input-group-text" id="basic-addon1"><i className="fa-solid fa-envelope"></i></span>
     <input type="email" placeholder="Enter Your E-mail" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-     {...register("email",{
-      required: {
-        value: true,
-        message: emailValidation.required
-      },
-      pattern: {
-        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-        message: emailValidation.invalid
-      }
-     })} />
+     {...register("email",emailValidation)} />
 
     </div>
      <span className="text-danger">{errors?.email?.message}</span>
   </div>
-  <div className="input-group mb-3">
+  <div className="input-group my-2">
     <span className="input-group-text" id="basic-addon1"><i className="fa-solid fa-lock"></i></span>
     <input type={visible? "text": "password"} placeholder="Password" className="form-control" id="exampleInputPassword1"  
-    {...register("password",{ required:  passValidation.required  })} />
+    {...register("password",passValidation)} />
       <div className="input-group-text" onClick={handleVisible}>
         {visible? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
         </div>
@@ -82,7 +76,7 @@ const onSubmit = async (data) => {
   <Link to="/forgot-password" className="text-decoration-none forgetPassLink" >Forgot Password?</Link>
   </div>
 
-  <button type="submit" className="btn submit-btn w-100 mb-5 fw-bold">Login</button>
+  <button type="submit" className="btn submit-btn w-100  fw-bold">Login</button>
 
 
 </form> 

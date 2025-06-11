@@ -5,23 +5,34 @@ import {toast} from "react-toastify";
 import {
 
   ConfirmPassValidation,
-  passValidation,
+  newPassValidation,
+  oldPassValidation,
 
 } from "../../../../Constants/VALIDATION";
 import { AUTH_URLS, axiosInstance } from "../../../../Constants/END-POINTS";
 import { useState } from "react";
 
 export default function ChangePassword() {
-    const [visible,setVisible] = useState(false);
-    const handleVisible = () => {
-      setVisible(!visible);
-    }
+         const [firstVisible,setFirstVisible] = useState(false);
+   const [secondVisible,setSecondVisible] = useState(false);
+   const [thirdVisible,setThirdVisible] = useState(false);
+
+ const handleFirstVisible = () => {
+     setFirstVisible(!firstVisible);
+   }
+   
+   const handleSecondVisible = () => {
+     setSecondVisible(!secondVisible);
+   }
+    const handleThirdVisible = () => {
+     setThirdVisible(!thirdVisible);
+   }
     const navigate = useNavigate();
   const {register,handleSubmit,formState:{errors}, watch} = useForm();
   const onSubmit = async (data) => {
     try {
       const response = await axiosInstance.put(AUTH_URLS.changePassword,data);
-      toast.success("Password has been Updated Successfully",{
+      toast.success(response?.data?.message,{
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
@@ -34,7 +45,7 @@ export default function ChangePassword() {
       navigate("/login");
     } catch (error) {
       console.log(error);
-      toast.error("Login Failed",{
+      toast.error(error?.response?.data?.message,{
         position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
@@ -48,51 +59,36 @@ export default function ChangePassword() {
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-3">
+      <div className="mb-2">
       <h3 className="text-capitalize">Change password</h3>
       <p>Welcome Back! Please enter your details</p>
       </div>
    
-        <div className="input-group mb-3">
+        <div className="input-group my-2">
            <span className="input-group-text" id="basic-addon1"><i className="fa-solid fa-lock"></i></span>
-           <input type={visible? "text": "password"} placeholder="Old Password" className="form-control" id="exampleInputPassword1"  
-           {...register("oldPassword",{
-             required: {
-               value: true,
-               message: passValidation.required
-             }
-            })} />
-                     <div className="input-group-text" onClick={handleVisible}>
-           {visible? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
+           <input type={firstVisible? "text": "password"} placeholder="Old Password" className="form-control" id="exampleInputPassword1"  
+           {...register("oldPassword",oldPassValidation)} />
+                     <div className="input-group-text" onClick={handleFirstVisible}>
+           {firstVisible? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
            </div>
          </div>
-            <span className="text-danger">{errors?.password?.message}</span> 
-             <div className="input-group mb-3">
+            <span className="text-danger">{errors?.oldPassword?.message}</span> 
+             <div className="input-group my-2">
            <span className="input-group-text" id="basic-addon1"><i className="fa-solid fa-lock"></i></span>
-           <input type={visible? "text": "password"} placeholder="New Password" className="form-control" id="exampleInputPassword1"  
-           {...register("newPassword",{
-             required: {
-               value: true,
-               message: passValidation.required
-             },
-             pattern: {
-               value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@]{8,}$/,
-               
-               message: passValidation.invalid
-             }
-            })} />
-                     <div className="input-group-text" onClick={handleVisible}>
-           {visible? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
+           <input type={secondVisible? "text": "password"} placeholder="New Password" className="form-control" id="exampleInputPassword1"  
+           {...register("newPassword",newPassValidation)} />
+                     <div className="input-group-text" onClick={handleSecondVisible}>
+           {secondVisible? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
            </div>
          </div>
-            <span className="text-danger">{errors?.password?.message}</span>
-              <div className="input-group mb-3">
+            <span className="text-danger">{errors?.newPassword?.message}</span>
+              <div className="input-group my-2">
            <span className="input-group-text" id="basic-addon1"><i className="fa-solid fa-lock"></i></span>
-           <input type={visible? "text": "password"} placeholder="Confirm Password" className="form-control" id="exampleInputPassword1"  
+           <input type={thirdVisible? "text": "password"} placeholder="Confirm Password" className="form-control" id="exampleInputPassword1"  
            {...register("confirmNewPassword",{
              required: {
                value: true,
-               message: passValidation.required,
+               message: ConfirmPassValidation.required,
                
              },
              validate:{
@@ -100,11 +96,11 @@ export default function ChangePassword() {
    
              } 
             })} />
-              <div className="input-group-text" onClick={handleVisible}>
-           {visible? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
+              <div className="input-group-text" onClick={handleThirdVisible}>
+           {thirdVisible? <i className="fa-solid fa-eye"></i> : <i className="fa-solid fa-eye-slash"></i>}
            </div>
          </div>
-   <span className="text-danger">{errors?.confirmPassword?.message}</span>
+   <span className="text-danger">{errors?.confirmNewPassword?.message}</span>
          
     
       <button type="submit" className="btn submit-btn w-100 mt-4 fw-bold">Save Password</button>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Table from 'react-bootstrap/Table';
 import Header from '../../../Shared/Components/Header/Header';
 import headerImg from '../../../../assets/images/Group 48102127.png';
@@ -8,14 +9,18 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DeleteConfirmation from '../../../Shared/Components/DeleteConfirmation/DeleteConfirmation';
 import { useForm } from 'react-hook-form';
-import { name } from '../../../../Constants/VALIDATION';
+import { nameValidation } from '../../../../Constants/VALIDATION';
 import ViewDetailsModal from '../../../Shared/Components/ViewDetailsModal/ViewDetailsModal';
 import ViewDetailsImg from '../../../../assets/images/Group 48102098.png'
 import NoData from '../../../Shared/Components/NoData/NoData';
 import { Oval } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
-
+import { Pagination } from 'react-bootstrap';
 export default function CategoriesList() {
+  const [nameValue, setNameValue] = useState("");
+   const [arrayOfPages, setArrayOfPages] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(10);
   const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [categoryDetails, setCategoryDetails] = useState({});
@@ -100,10 +105,11 @@ export default function CategoriesList() {
   const handleShowMutateModule = () => setShowMutateModule(true);
 
   // get all categories
- const getAllCategories = async (pageSize,pageNumber) => {
+ const getAllCategories = async (pageSize,pageNumber,name) => {
     try {
       setIsLoading(true);
-      const response = await axiosInstance.get(CATEGORY_URLS.getAllCategories,{params:{pageSize, pageNumber}});
+      const response = await axiosInstance.get(CATEGORY_URLS.getAllCategories,{params:{pageSize, pageNumber,name}});
+          setArrayOfPages(Array(response.data.totalNumberOfPages).fill().map((_,i) => i+1));
       setCategories(response.data.data);
     } catch (error) {
       console.log(error.response?.data?.message || error.message);
@@ -145,8 +151,8 @@ export default function CategoriesList() {
   };
 
   useEffect(() => {
-    getAllCategories(10,1);
-  }, []);
+    getAllCategories(pageSize,currentPage);
+  }, [pageSize, currentPage]);
 
   // When mode changes to 'update', populate form if editing
   useEffect(() => {
@@ -158,7 +164,11 @@ export default function CategoriesList() {
       }
     }
   }, [mode, categId, categories, setValue]);
-
+const getNameValue = (input) => {
+    setNameValue(input.target.value);
+    getAllCategories(pageSize, currentPage, input.target.value);
+    setIsLoading(false);
+  };
   if (isLoading) return (<div className='d-flex align-items-center justify-content-center'>
     <Oval
       visible={true}
@@ -234,7 +244,7 @@ export default function CategoriesList() {
               type='text'
               placeholder='Category Name'
               className='form-control'
-              {...register('name', { required: name.required })}
+              {...register('name', nameValidation)}
             />
             <span className='text-danger'>{errors?.name?.message}</span>
             <Modal.Footer>
@@ -245,7 +255,12 @@ export default function CategoriesList() {
           </form>
         </Modal.Body>
       </Modal>
-
+ <input
+            type="text"
+            className="form-control mb-3 w-75"
+            placeholder="Search here..."
+            onChange={getNameValue}
+          />
       <Table
         className='table'
         striped
@@ -324,6 +339,39 @@ export default function CategoriesList() {
           />
         </tbody>
       </Table>
+       {categories.length > 0 ? (   
+          <Pagination className='d-flex justify-content-end my-4'>
+      <Pagination.Prev
+        onClick={() => {
+          if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            getAllCategories(pageSize, currentPage - 1);
+          }
+        }}
+        disabled={currentPage === 1}
+      >Previous</Pagination.Prev>
+      {arrayOfPages.map((pageNo) => (
+        <Pagination.Item
+          key={pageNo}
+          active={pageNo === currentPage}
+          onClick={() => {
+            setCurrentPage(pageNo);
+            getAllCategories(pageSize, pageNo);
+          }}
+        >
+          {pageNo}
+        </Pagination.Item>
+      ))}
+      <Pagination.Next
+        onClick={() => {
+          if (currentPage < arrayOfPages.length) {
+            setCurrentPage(currentPage + 1);
+            getAllCategories(pageSize, currentPage + 1);
+          }
+        }}
+        disabled={currentPage === arrayOfPages.length}
+      >Next</Pagination.Next>
+    </Pagination>) :''}
     </div>
   );
 }

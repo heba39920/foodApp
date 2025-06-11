@@ -9,18 +9,19 @@ import { ToastContainer } from 'react-toastify'
 import AuthContextProvider from './Context/AuthContext.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import {FavoriteListContextProvider} from './Context/FavoriteListContext.jsx';
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
   <ToastContainer />
-  
+  <FavoriteListContextProvider>
   <AuthContextProvider>
   <QueryClientProvider client={queryClient}>
     <App />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
     </AuthContextProvider>
-    
+    </FavoriteListContextProvider>
   </StrictMode>,
 )

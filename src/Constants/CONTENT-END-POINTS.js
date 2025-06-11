@@ -19,7 +19,7 @@ axiosInstance.interceptors.request.use((config) => {
 // recipes
 const BASE_RECIPE_URL = `${BASE_URL}/api/v1/Recipe`;
 export const RECIPE_URLS = {
-    getAllRecipes: `${BASE_RECIPE_URL}/?pageSize=10&pageNumber=1`,
+    getAllRecipes: BASE_RECIPE_URL,
     getRecipeById: (id) => `${BASE_RECIPE_URL}/${id}`,
     addRecipe: `${BASE_RECIPE_URL}/`,
     updateRecipe: (id) => `${BASE_RECIPE_URL}/${id}`,
@@ -28,8 +28,6 @@ export const RECIPE_URLS = {
     deleteRecipe: (id) => `${BASE_RECIPE_URL}/${id}`,
 
 } 
-
-//
 // categories
 const BASE_CATEGORY_URL = `${BASE_URL}/api/v1/Category`;
 export const CATEGORY_URLS = {
@@ -43,4 +41,18 @@ export const CATEGORY_URLS = {
 //tags 
 export const TAGS_URL = {
   getAllTags:`${BASE_URL}/api/v1/tag/`
+};
+//Users
+const BASE_USERS_URL = `${BASE_URL}/api/v1/Users`;
+export const USERS_URLS = {
+      getAllUsers: BASE_USERS_URL,
+    getUserById: (id) => `${BASE_USERS_URL}/${id}`,
+     deleteUser: (id) => `${BASE_USERS_URL}/${id}`,
+}
+//userRecipe/
+const BASE_USER_RECIPE_URL = `${BASE_URL}/api/v1/userRecipe/`;
+export const USER_RECIPE_URLS = {
+    getAllUserRecipes: BASE_USER_RECIPE_URL,
+    addUserRecipe: `${BASE_USER_RECIPE_URL}/`,
+    deleteUserRecipe: (id) => `${BASE_USER_RECIPE_URL}/${id}`,
 };

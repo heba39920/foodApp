@@ -1,58 +1,71 @@
 export const emailValidation = {
   required: "Email is required",
-  invalid: "Email is invalid",
+  pattern: {
+    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    message: "Email is invalid",
+  },
 };
-export const name = {
+export const nameValidation = {
   required: "name is required",
 };
-export const userName = {
-  required: "userName is required",
+export const userNameValidation = {
+  required: "User Name is required",
 };
-export const phone = {
+export const phoneValidation = {
   required: "phone is required",
 };
-export const country = {
+export const countryValidation = {
   required: "country is required",
 };
-export const Recipe_image = {
+export const RecipeImageValidation = {
   required: "Recipe's image is required",
 };
-export const price = {
+export const priceValidation = {
   required: "price is required",
 };
-export const tag = {
+export const tagValidation = {
   required: "tag is required",
 };
-export const image = {
+export const imageValidation = {
   required: "Image is required",
 };
-export const category = {
+export const categoryValidation = {
   required: "Category is required",
-}
-export const description = {
+};
+export const descriptionValidation = {
   required: "description is required",
 };
 export const passValidation = {
-  required: "Password is required",
-  invalid: "Password is invalid",
+  required: {
+    value: true,
+    message: "Password is required",
+  },
+  pattern: {
+    value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@]{8,}$/,
+    message: "Password is invalid",
+  },
 };
 export const ConfirmPassValidation = {
   required: "Confirm Password is required",
   invalid: "Password is not matching",
 };
+export const newPassValidation = {
+ required: {
+    value: true,
+    message: "New Password is required",
+  },
+  pattern: {
+    value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@]{8,}$/,
+    message: "New Password is invalid",
+  },
+};
+export const oldPassValidation = {
+  required: "Old Password is required",
+  invalid: "Old Password is invalid",
+};
 export const otpValidation = {
   required: "OTP is required",
   invalid: "OTP is invalid",
 };
-export const first_nameValidation = {
-  required: "first name is required",
-  invalid: "first name is invalid",
-};
-export const last_nameValidation = {
-  required: "last is required",
-  invalid: "last is invalid",
-};
-export const roleValidation = {
-  required: "role is required",
-  invalid: "role is invalid",
-};
+
+

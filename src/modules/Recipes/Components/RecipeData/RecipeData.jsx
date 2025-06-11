@@ -6,11 +6,10 @@ import { toast } from 'react-toastify';
 import { axiosInstance, RECIPE_URLS } from '../../../../Constants/CONTENT-END-POINTS';
 import Form from '../../../Shared/Components/Form/Form';
 import { Oval } from 'react-loader-spinner';
-
 export default function RecipeData() {
   const location = useLocation();  
-  const mode = location.state.mode;
-  const recipe = location.state.recipe;
+  const mode = location?.state?.mode;
+  const recipe = location?.state?.recipe;
 const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false); 
   const { reset } = useForm();
@@ -22,9 +21,6 @@ const navigate = useNavigate();
     formData.append('categoriesIds', data?.categoriesIds);
     formData.append('description', data?.description);
     formData.append('recipeImage', data?.recipeImage[0]);
-
-
- 
     if (data?.recipeImage) {
       if (Array.isArray(data.recipeImage)) {
         formData.append('recipeImage', data.recipeImage[0]);
@@ -32,19 +28,14 @@ const navigate = useNavigate();
         formData.append('recipeImage', data.recipeImage);
       }
     }
-
     return formData;
   };
-
   const onSubmit = async (data) => {
     setIsLoading(true);
     const recipeData = appendToFormData(data);
- 
-    
     try {
       if (mode === 'add') {
         const response = await axiosInstance.post(RECIPE_URLS.addRecipe, recipeData);  
-        
         toast.success('Recipe added successfully!',{
           position:'top-center'
         });
@@ -52,7 +43,6 @@ const navigate = useNavigate();
         navigate('/dashboard/recipes')
       } else if (mode === 'update') {
         const response = await axiosInstance.put(RECIPE_URLS.updateRecipe(recipe.id), recipeData);
-   
        navigate('/dashboard/recipes')
         toast.success('Recipe updated successfully!',{
           position:'top-center'
@@ -64,7 +54,6 @@ const navigate = useNavigate();
       setIsLoading(false);
     }
   };
-   
  if (isLoading) return (<div className='d-flex align-items-center justify-content-center'>
     <Oval
       visible={true}
@@ -76,8 +65,6 @@ const navigate = useNavigate();
       wrapperClass=""
     /> </div>
   ); 
-  
-              
   return (
     <div className='container-fluid'>
       <div className="mainContent">
@@ -93,9 +80,6 @@ const navigate = useNavigate();
           </div>
         </div>
       </div>
-
- 
-
       <div className='row justify-content-center align-items-center mt-5'>
         <div className='col-md-8'>
           {

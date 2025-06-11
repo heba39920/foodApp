@@ -10,7 +10,6 @@ import Dashboard from "./modules/Dashboard/Components/Dashboard/Dashboard"
 import RecipesList from "./modules/Recipes/Components/RecipesList/RecipesList"
 import RecipeData from "./modules/Recipes/Components/RecipeData/RecipeData"
 import CategoriesList from "./modules/Categories/Components/CategoriesList/CategoriesList"
-import CategoryData from "./modules/Categories/Components/CategoryData/CategoryData"
 import UsersList from "./modules/Users/Components/UsersList/UsersList"
 import FavoritesList from "./modules/Favorites/FavoritesList/FavoritesList"
 import Verify from "./modules/AuthModule/Components/Verify/Verify"
@@ -45,13 +44,12 @@ function App() {
         {path: 'recipes', element:<RecipesList/>},
         {path: 'recipes-data', element:<RecipeData/>},
         {path: 'categories', element:<CategoriesList/>},
-        {path: 'category-data', element:<CategoryData/>},
         {path: 'users', element:<UsersList/>},
         {path: 'favorites', element:<FavoritesList/>},
 
       ]
     }
-  ])
+  ],{  future: { v7_relativeSplatPath: true }})
 
   return <RouterProvider router={routes} />
 }
