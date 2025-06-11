@@ -1,6 +1,6 @@
 
 import NavBar from '../Navbar/Navbar'
-import SideBar from '../SideBar/SideBar'
+import SideBar from '../Sidebar/Sidebar'
 import { Outlet } from 'react-router-dom'
 export default function MasterLayout() {
   return (
