@@ -1,7 +1,7 @@
-import NavBar from '../NavBar/NavBar'
-import SideBar from '../SideBar/SideBar'
-import { Outlet } from 'react-router-dom'
 
+import NavBar from '../Navbar/Navbar'
+import SideBar from '../Sidebar/Sidebar'
+import { Outlet } from 'react-router-dom'
 export default function MasterLayout() {
   return (
     
@@ -9,11 +9,8 @@ export default function MasterLayout() {
        <div className=" position-sticky top-0  vh-100 ">
           <SideBar />
           </div>
-      
-  
         <div className="w-100">
           <NavBar />
-             
           <Outlet />
         </div>
       </div>

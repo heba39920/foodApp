@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import {createHashRouter, RouterProvider } from "react-router-dom"
 import AuthLayout from "./modules/Shared/Components/AuthLayout/AuthLayout"
 import NotFound from "./modules/Shared/Components/NotFound/NotFound"
 import Login from "./modules/AuthModule/Components/Login/Login"
@@ -20,7 +20,7 @@ import MasterLayout from "./modules/Shared/Components/MasterLayout/MasterLayout"
 
 
 function App() {
-  const routes = createBrowserRouter([
+  const routes = createHashRouter([
     {path: '/', element: <AuthLayout/>,
     errorElement: <NotFound/>,
     children:[
