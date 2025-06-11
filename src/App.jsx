@@ -5,7 +5,6 @@ import Login from "./modules/AuthModule/Components/Login/Login"
 import Register from "./modules/AuthModule/Components/Register/Register"
 import ForgotPassword from "./modules/AuthModule/Components/ForgotPassword/ForgotPassword"
 import ResetPassword from "./modules/AuthModule/Components/ResetPassword/ResetPassword"
-import MasterLayout from "./modules/Shared/Components/MasterLayout/MasterLayout"
 import Dashboard from "./modules/Dashboard/Components/Dashboard/Dashboard"
 import RecipesList from "./modules/Recipes/Components/RecipesList/RecipesList"
 import RecipeData from "./modules/Recipes/Components/RecipeData/RecipeData"
@@ -15,6 +14,7 @@ import FavoritesList from "./modules/Favorites/FavoritesList/FavoritesList"
 import Verify from "./modules/AuthModule/Components/Verify/Verify"
 import Protected from "./Protected/Protected"
 import ChangePassword from "./modules/AuthModule/Components/ChangePassword/ChangePassword"
+import MasterLayout from "./modules/Shared/Components/MasterLayout/MasterLayout"
 
 
 
