@@ -1,5 +1,5 @@
-
-import SideBar from '../SideBar/SideBar'
+import NavBar from '../NavBar/NavBar.jsx'
+import SideBar from '../SideBar/SideBar.jsx'
 import { Outlet } from 'react-router-dom'
 
 export default function MasterLayout() {
@@ -12,7 +12,7 @@ export default function MasterLayout() {
       
   
         <div className="w-100">
-          
+          <NavBar />
              
           <Outlet />
         </div>
