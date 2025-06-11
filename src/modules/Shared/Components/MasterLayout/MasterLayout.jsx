@@ -1,15 +1,15 @@
 
-import NavBar from '../Navbar/Navbar'
-import SideBar from '../SideBar/SideBar'
+import NavBarComponent from '../NavBar/NavBar'
+import SideBarComponent from '../SideBar/SideBar'
 import { Outlet } from 'react-router-dom'
 export default function MasterLayout() {
   return (
       <div className="d-flex">
        <div className=" position-sticky top-0  vh-100 ">
-          <SideBar />
+          <SideBarComponent />
           </div>
         <div className="w-100">
-          <NavBar />
+          <NavBarComponent />
           <Outlet />
         </div>
       </div>

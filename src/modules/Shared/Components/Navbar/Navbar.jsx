@@ -1,7 +1,7 @@
 import { useAuthContext } from "../../../../Context/AuthContext";
 import logo from "../../../../assets/images/4 3.png";
 
-export default function NavBar() {
+export default function NavBarComponent() {
  const  {userData}= useAuthContext();
   return (
 <nav className="navbar navbar-expand-lg bg-body-tertiary m-3 rounded-2">

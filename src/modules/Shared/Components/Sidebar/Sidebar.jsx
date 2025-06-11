@@ -4,7 +4,7 @@ import sideBarImg from '../../../../assets/images/3.png';
 import { useState } from 'react';
 import { useAuthContext } from '../../../../Context/AuthContext';
 
-export default function SideBar() {
+export default function SideBarComponent() {
    const  {userData}= useAuthContext();
  
    
