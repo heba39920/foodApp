@@ -15,6 +15,7 @@ li{
 }
 body{
     margin: 0;
+    overflow: hidden;
 }
 /* sidebar */
 .sidebar .css-dip3t8{
