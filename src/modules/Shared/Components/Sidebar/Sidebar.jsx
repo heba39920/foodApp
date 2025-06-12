@@ -6,8 +6,6 @@ import { useAuthContext } from '../../../../Context/AuthContext';
 
 export default function SideBarComponent() {
    const  {userData}= useAuthContext();
- 
-   console.log(userData);
    
   const navigate = useNavigate();
 const  [isCollapsed, setIsCollapsed]= useState(false)
