@@ -133,83 +133,89 @@ export default function FavoritesList() {
          <i class="fa-solid fa-list-ul view" onClick={toggleViewList}></i>
 
      </div>
-   {isGridView?(<div className='row justify-content-center align-items-center'>
-{favoriteRecipes.map((favRecipe) => (
-  <div className='col-md-3' key={favRecipe.id}>
-    <div className='favRecipe text-center position-relative'>
-      <i onClick={() => handleViewDetails(favRecipe)} className='fa-solid fa-eye btns-icon position-absolute top-0 start-0 bg-light p-1 rounded-2 m-2'></i>
-      <i onClick={() => handleShow(favRecipe.id)} className='fa-solid fa-heart btns-icon position-absolute top-0 end-0 bg-light p-1 rounded-2 m-2'></i>
-      <img className='rounded-2' src={`${BASE_IMAGE_URL}${favRecipe?.recipe?.imagePath || ViewDetailsImg}`} alt="" />
-      <h5>{favRecipe?.recipe?.name}</h5>
-      <h6>{favRecipe?.recipe?.price} $</h6>
-      <p className='pb-3'>{favRecipe?.recipe?.description}</p>
+{favoriteRecipes.length === 0 ? (
+  <NoData />
+) : (
+  isGridView ? (
+    <div className='row justify-content-center align-items-center'>
+      {favoriteRecipes.map((favRecipe) => (
+        <div className='col-md-3' key={favRecipe.id}>
+          <div className='favRecipe text-center position-relative'>
+            <i onClick={() => handleViewDetails(favRecipe)} className='fa-solid fa-eye btns-icon position-absolute top-0 start-0 bg-light p-1 rounded-2 m-2'></i>
+            <i onClick={() => handleShow(favRecipe.id)} className='fa-solid fa-heart btns-icon position-absolute top-0 end-0 bg-light p-1 rounded-2 m-2'></i>
+            <img className='rounded-2' src={`${BASE_IMAGE_URL}${favRecipe?.recipe?.imagePath || ViewDetailsImg}`} alt="" />
+            <h5>{favRecipe?.recipe?.name}</h5>
+            <h6>{favRecipe?.recipe?.price} $</h6>
+            <p className='pb-3'>{favRecipe?.recipe?.description}</p>
+          </div>
+        </div>
+      ))}
     </div>
-  </div>
-))}
-     </div>):( <Table
-           className='table'
-           striped
-           bordered
-           hover
-           style={{ textAlign: 'center' }}
-         >
-           <thead>
-             <tr>
-               <th>Name</th>
-               <th>Image</th>
-               <th>Price</th>
-               <th>Description</th>
-               <th>Tag</th>
-               <th>Category</th>
-               <th>Actions</th>
-             </tr>
-           </thead>
-           <tbody>
-           {favoriteRecipes.length === 0 ? (
-               <tr>
-                 <td colSpan='7'>
-                   <NoData />
-                 </td>
-               </tr>
-             ) : (
-               favoriteRecipes.map((favRecipe) => (
-                 <tr key={favRecipe?.id}>
-                   <td>{favRecipe?.recipe?.name}</td>
-                   <td><img className='recipeImage' src={`${BASE_IMAGE_URL}${favRecipe?.recipe?.imagePath}`} alt="favorite recipe image" /></td>
-                   <td>{favRecipe?.recipe?.price} $</td>
-                   <td>{favRecipe?.recipe?.description}</td>
-                   <td>{favRecipe?.recipe?.tag?.name}</td>
-                  <td>{favRecipe?.recipe?.category?.[0]?.name}</td>               
-                   <td>
-                     <Dropdown>
-                       <Dropdown.Toggle variant='transparent' id='dropdown-basic'>
-                         <i className='fa-solid fa-ellipsis'></i>
-                       </Dropdown.Toggle>
-                       <Dropdown.Menu>
-                         <Dropdown.Item
-                           onClick={() => handleViewDetails(favRecipe)}
-                         >
-                           <span className='btns-icon mx-1'>
-                             <i className='fa-solid fa-eye'></i>
-                           </span>{' '}
-                           View
-                         </Dropdown.Item>
-              
-                         <Dropdown.Item onClick={() => handleShow(favRecipe.id)}>
-                           <span className='btns-icon mx-1'>
-                             <i className='fa-solid fa-trash-can'></i>
-                           </span>{' '}
-                           Delete
-                         </Dropdown.Item>
-                       </Dropdown.Menu>
-                     </Dropdown>
-                   </td>
-                 </tr>
-               ))
-             )}
-           </tbody>
-         </Table>  )}  
-          
+  ) : (
+    <Table
+      className='table'
+      striped
+      bordered
+      hover
+      style={{ textAlign: 'center' }}
+    >
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Tag</th>
+          <th>Category</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {favoriteRecipes.length === 0 ? (
+          <tr>
+            <td colSpan='7'>
+              <NoData />
+            </td>
+          </tr>
+        ) : (
+          favoriteRecipes.map((favRecipe) => (
+            <tr key={favRecipe?.id}>
+              <td>{favRecipe?.recipe?.name}</td>
+              <td><img className='recipeImage' src={`${BASE_IMAGE_URL}${favRecipe?.recipe?.imagePath}`} alt="favorite recipe image" /></td>
+              <td>{favRecipe?.recipe?.price} $</td>
+              <td>{favRecipe?.recipe?.description}</td>
+              <td>{favRecipe?.recipe?.tag?.name}</td>
+              <td>{favRecipe?.recipe?.category?.[0]?.name}</td>
+              <td>
+                <Dropdown>
+                  <Dropdown.Toggle variant='transparent' id='dropdown-basic'>
+                    <i className='fa-solid fa-ellipsis'></i>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      onClick={() => handleViewDetails(favRecipe)}
+                    >
+                      <span className='btns-icon mx-1'>
+                        <i className='fa-solid fa-eye'></i>
+                      </span>{' '}
+                      View
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => handleShow(favRecipe.id)}>
+                      <span className='btns-icon mx-1'>
+                        <i className='fa-solid fa-trash-can'></i>
+                      </span>{' '}
+                      Delete
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </td>
+            </tr>
+          ))
+        )}
+      </tbody>
+    </Table>
+  )
+)}
           <ViewDetailsModal
                img={`${BASE_IMAGE_URL}${favoriteRecipeDetails?.recipe?.imagePath || ViewDetailsImg}`}
                head='Recipe'
