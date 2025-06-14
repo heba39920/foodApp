@@ -27,12 +27,12 @@ export default function RecipesList() {
   const [nameValue, setNameValue] = useState("");
   const [tagValue, setTagValue] = useState("");
   const [categoryValue, setCategoryValue] = useState("");
-
   const [arrayOfPages, setArrayOfPages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
-  const { favoriteRecipes } = useFavListContext();
+  const { favoriteRecipes, getAllUserRecipes} = useFavListContext();
 
+  
   const { userData } = useAuthContext();
   const [mode, setMode] = useState("add");
   const navigate = useNavigate();
@@ -116,7 +116,8 @@ export default function RecipesList() {
     }
   };
   const AddToFavorites = async (recipeId) => {
-    if (favoriteRecipes.some((fav) => fav.id === recipeId)) {
+    // Check if the recipe is already in favorites
+    if (favoriteRecipes.some((fav) => fav?.recipe?.id === recipeId)) {
       toast.error("Recipe already in favorites", {
         position: "top-center",
       });
@@ -125,10 +126,10 @@ export default function RecipesList() {
        try {
       setIsLoading(true);
       await axiosInstance.post(USER_RECIPE_URLS.addUserRecipe, { recipeId });
+      getAllUserRecipes();
       toast.success("Recipe added to favorites successfully", {
         position: "top-center",
       });
-
     } catch (error) {
       console.log(error);
       toast.error("Failed to add Recipe to favorites", {
@@ -138,9 +139,6 @@ export default function RecipesList() {
       setIsLoading(false);
     }
   };
-    
-
-   
   useEffect(() => {
     getAllRecipes(pageSize, currentPage);
     getAllTags();
@@ -251,7 +249,6 @@ export default function RecipesList() {
                             </option>
                         ))}
                     </select>
-
         </div>
         <div className="col-md-3">
             <select className='form-select form-control my-3' onChange={getCategoryValue}>

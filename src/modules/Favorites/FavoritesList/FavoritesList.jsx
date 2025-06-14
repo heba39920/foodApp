@@ -129,8 +129,8 @@ export default function FavoritesList() {
            </Modal.Footer>
          </Modal>
      <div className='d-flex align-items-center justify-content-end  mb-4'>    
-     <i class="fa-solid fa-grip mx-3 view" onClick={toggleView}></i>
-         <i class="fa-solid fa-list-ul view" onClick={toggleViewList}></i>
+     <i className="fa-solid fa-grip mx-3 view" onClick={toggleView}></i>
+         <i className="fa-solid fa-list-ul view" onClick={toggleViewList}></i>
 
      </div>
 {favoriteRecipes.length === 0 ? (

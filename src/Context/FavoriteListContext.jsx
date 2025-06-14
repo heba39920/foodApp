@@ -3,20 +3,16 @@ import { axiosInstance, USER_RECIPE_URLS } from "../Constants/CONTENT-END-POINTS
 const FavoriteListContext = createContext();
 export function FavoriteListContextProvider({ children }) {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const getAllUserRecipes = async () => {
     try {
-      setLoading(true);
+     
       const response = await axiosInstance.get(USER_RECIPE_URLS.getAllUserRecipes);
       // Ensure the response.data.data is the expected list of recipes
       setFavoriteRecipes(response.data.data);
     } catch (err) {
-      setError(err.response?.data?.message || err.message);
-    } finally {
-      setLoading(false);
-    }
+     console.log(err.response?.data?.message || err.message);
+    } 
   };
 
   // Fetch user recipes when the component mounts or when userData changes
@@ -27,7 +23,7 @@ export function FavoriteListContextProvider({ children }) {
 
   return (
     <FavoriteListContext.Provider
-      value={{ favoriteRecipes, loading, error, getAllUserRecipes }}
+      value={{ favoriteRecipes ,  getAllUserRecipes}}
     >
       {children}
     </FavoriteListContext.Provider>
