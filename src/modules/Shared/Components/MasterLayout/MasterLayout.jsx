@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import NavBarComponent from '../NavBar/Navbar'
+import NavBarComponent from '../Navbar/NavBar'
 import SideBarComponent from '../SideBar/SideBar'
 import { Outlet } from 'react-router-dom'
 export default function MasterLayout() {
