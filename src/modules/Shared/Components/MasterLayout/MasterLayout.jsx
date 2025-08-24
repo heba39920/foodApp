@@ -1,8 +1,10 @@
 
 import { useState } from 'react';
 
-import SideBarComponent from '../SideBar/SideBar'
+
 import { Outlet } from 'react-router-dom'
+import NavBarComponent from '../NavBar/NavBar';
+import SideBarComponent from '../SideBar/SideBar';
 export default function MasterLayout() {
     const [sidebarToggled, setSidebarToggled] = useState(false); // Drawer للموبايل
   const toggleSidebarMobile = () => setSidebarToggled((p) => !p);
