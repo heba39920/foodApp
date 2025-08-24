@@ -4,23 +4,37 @@ import sideBarImg from '../../../../assets/images/3.png';
 import { useState } from 'react';
 import { useAuthContext } from '../../../../Context/AuthContext';
 
-export default function SideBarComponent() {
+export default function SideBarComponent({toggled, setToggled}) {
+
+  const handleBackdrop = () => setToggled(false);
    const  {userData}= useAuthContext();
    
   const navigate = useNavigate();
 const  [isCollapsed, setIsCollapsed]= useState(false)
-const handleCollapse=()=>{
-  setIsCollapsed(!isCollapsed)
-}
+
 const handleLogout=()=>{
   localStorage.removeItem('token');
   navigate('/login');
   
-}
+} ;
+   const handleMenuClick = () => {
+    if (window.innerWidth < 1024) {
+      // < lg => افتح/اقفل drawer
+      setToggled(!toggled);
+    } else {
+      // ≥ lg => collapse/expand
+      setIsCollapsed((p) => !p);
+    }
+  };
+
   return (
     <div className='sidebar'>
-    <Sidebar style={{height:'100vh'}} collapsed={isCollapsed}>
-    <img src={sideBarImg} onClick={handleCollapse} className='w-75' alt="sidebar logo" />
+    <Sidebar style={{height:'100vh'}} collapsed={isCollapsed}
+      breakPoint="lg" // < lg يتحول لدروار
+      toggled={toggled} // تحكم فتح/إغلاق الموبايل
+      onBackdropClick={handleBackdrop}
+      >
+    <img src={sideBarImg} onClick={handleMenuClick} className='w-75' alt="sidebar logo" />
   <Menu>
     <MenuItem icon={<i className="fa fa-house"></i>} component={<Link to="/dashboard" />}>Home</MenuItem>
     {userData?.userGroup === 'SuperAdmin'?<MenuItem icon={<i className="fa fa-users"></i>} component={<Link to="users" />}>Users</MenuItem>:''}  
